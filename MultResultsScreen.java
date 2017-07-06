@@ -10,27 +10,18 @@ public class MultResultsScreen extends ListActivity  {
     CustomListAdapter adapter;
 
     String[] itemname ={
+            "Bosrietzanger",
             "Spotvogel",
-            "Rietzanger",
-            "Spotvogel",
-            "Rietzanger",
-            "Spotvogel",
-            "Rietzanger",
-            "Spotvogel",
-            "Rietzanger",
-            "Roodborsttapuit"
+            "Roodborst",
+            "Fitis",
+
     };
 
     Integer[] imgid={
-            R.drawable.duif1,
-            R.drawable.duif2,
-            R.drawable.duif1,
-            R.drawable.duif2,
-            R.drawable.duif1,
-            R.drawable.duif2,
-            R.drawable.duif1,
-            R.drawable.duif2,
-            R.drawable.duif3
+            R.drawable.bosrietzanger,
+            R.drawable.spotvogel,
+            R.drawable.robin,
+            R.drawable.fitis
     };
 
     @Override

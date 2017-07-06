@@ -2,6 +2,7 @@ package com.example.joris.spotvogel;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +18,7 @@ public class CustomListAdapter extends ArrayAdapter<String> {
     private final Activity context;
     private final String[] itemname;
     private final Integer[] imgid;
+    AssetManager assetManager = getContext().getAssets();
 
     public CustomListAdapter(Activity context, String[] itemname, Integer[] imgid) {
         super(context, R.layout.mylist, itemname);
@@ -29,10 +31,15 @@ public class CustomListAdapter extends ArrayAdapter<String> {
     public View getView(int position,View view,ViewGroup parent) {
         LayoutInflater inflater=context.getLayoutInflater();
         final View rowView=inflater.inflate(R.layout.mylist, null,true);
+        Typeface bold = Typeface.createFromAsset(assetManager, "fonts/AdobeCaslonProBold.ttf");
+        Typeface italic = Typeface.createFromAsset(assetManager, "fonts/AdobeCaslonProItalic.ttf");
 
         TextView txtTitle = (TextView) rowView.findViewById(R.id.item);
         ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
         TextView extratxt = (TextView) rowView.findViewById(R.id.textView1);
+
+        txtTitle.setTypeface(bold);
+        extratxt.setTypeface(italic);
 
         txtTitle.setText(itemname[position]);
         imageView.setImageResource(imgid[position]);

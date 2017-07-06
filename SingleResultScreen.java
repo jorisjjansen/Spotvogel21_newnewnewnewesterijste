@@ -5,13 +5,14 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class SingleResultScreen extends Activity{
     MediaPlayer mp;
-    Integer sound = R.raw.bird_is_the_word;
+    Integer sound = R.raw.robin;
 
     //audio file
     //photofile
@@ -33,6 +34,7 @@ public class SingleResultScreen extends Activity{
 
         TextView beschrijving = (TextView) findViewById(R.id.beschrijving);
         beschrijving.setTypeface(adobeBold);
+        beschrijving.setMovementMethod(new ScrollingMovementMethod());
         //beschrijving.setText(beschrijvingString);
 
         Bundle b = getIntent().getExtras();

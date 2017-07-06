@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 public class MainActivity extends Activity implements Shaker.Callback {
 
     public Shaker shaker;
+    private static final int CAMERA_PIC_REQUEST = 1111;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,13 +75,15 @@ public class MainActivity extends Activity implements Shaker.Callback {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode, resultCode, data);
-        Bitmap bitmap = (Bitmap)data.getExtras().get("data");
+        if (resultCode == RESULT_OK) {
+            super.onActivityResult(requestCode, resultCode, data);
+            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
 
-        //STUUR DE FOTO NAAR DE API.
+            //STUUR DE FOTO NAAR DE API.
 
-        Intent intent = new Intent(this, MultResultsScreen.class);
-        startActivity(intent);
+            Intent intent = new Intent(this, MultResultsScreen.class);
+            startActivity(intent);
+        }
     }
 
 
