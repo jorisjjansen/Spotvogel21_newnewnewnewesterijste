@@ -8,12 +8,9 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.widget.ImageButton;
 
 public class ssaActivity extends FragmentActivity {
-
-    static String size = "";
-    static String color = "";
-    static String beak = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,12 +19,9 @@ public class ssaActivity extends FragmentActivity {
 
         ViewPager pager = (ViewPager) findViewById(R.id.viewPager);
 
-//        TextView tv = (TextView) findViewById(R.id.size_question);
-//
-//        Typeface adobeBold = Typeface.createFromAsset(getAssets(), "fonts/AdobeCaslonProBold.ttf");
-//        tv.setTypeface(adobeBold);
-
         pager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
+
+        new GetDataFromAPI().execute();
     }
 
     @Override
@@ -53,9 +47,13 @@ public class ssaActivity extends FragmentActivity {
             }
         }
 
+        ImageButton button = (ImageButton) findViewById(R.id.next_button);
+
+
         @Override
         public int getCount() {
             return 3;
         }
     }
+
 }

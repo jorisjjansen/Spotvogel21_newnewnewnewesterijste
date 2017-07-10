@@ -1,6 +1,8 @@
 package com.example.joris.spotvogel;
 
 import android.app.Activity;
+import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
@@ -11,6 +13,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.Objects;
 
 
 public class MainActivity extends Activity implements Shaker.Callback {
@@ -22,6 +27,8 @@ public class MainActivity extends Activity implements Shaker.Callback {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        startService(new Intent(getBaseContext(), SearchService.class));
 
         shaker = new Shaker(this, 10d, 500, this);
 
@@ -55,11 +62,24 @@ public class MainActivity extends Activity implements Shaker.Callback {
     }
 
     public void getBird(View view) {
-        Intent getNameScreenIntent = new Intent(this, SingleResultScreen.class);
-        final int result = 1;
+        TextView bird = (TextView) findViewById(R.id.bird_name);
+        String currentName = bird.getText().toString().trim();
 
-        getNameScreenIntent.putExtra("callingActivity", "SlideActivity");
-        startActivityForResult(getNameScreenIntent, result);
+        if (Objects.equals(currentName, "")){
+            Context context = getApplicationContext();
+            CharSequence text = "Vul de naam van de vogel in.";
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
+        else {
+            Intent getNameScreenIntent = new Intent(this, SingleResultScreen.class);
+            final int result = 1;
+
+            getNameScreenIntent.putExtra("callingActivity", "SlideActivity");
+            startActivityForResult(getNameScreenIntent, result);
+        }
 
     }
 
